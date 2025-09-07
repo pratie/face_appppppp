@@ -1,0 +1,30 @@
+{
+  "name": "webcam-ai-video-app",
+  "version": "1.0.0",
+  "description": "Web app that turns webcam snapshots into character-consistent multi-scene videos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "clean": "rm -rf node_modules server/node_modules client/node_modules"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "ai",
+    "video",
+    "webcam",
+    "character-consistent",
+    "openai",
+    "replicate",
+    "elevenlabs"
+  ],
+  "author": "",
+  "license": "MIT"
+}

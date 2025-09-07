@@ -1,0 +1,382 @@
+.video-player-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.video-player-header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-player-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+.video-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.action-button.download {
+  background: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.action-button.download:hover {
+  background: #45a049;
+}
+
+.video-wrapper {
+  position: relative;
+  background: #000;
+  aspect-ratio: 16/9;
+}
+
+.video-wrapper.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  aspect-ratio: unset;
+}
+
+.video-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-controls.visible {
+  opacity: 1;
+}
+
+.controls-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.fullscreen-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.fullscreen-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.controls-bottom {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.play-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: background 0.2s ease;
+}
+
+.play-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.time-controls {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.time-display {
+  color: white;
+  font-size: 0.9rem;
+  font-family: 'Courier New', monospace;
+  min-width: 45px;
+  text-align: center;
+}
+
+.seek-bar {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.seek-bar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.seek-bar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-icon {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.volume-bar {
+  width: 80px;
+  appearance: none;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+.volume-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play-overlay-button {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  color: white;
+  font-size: 2rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.play-overlay-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.video-info {
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.video-description {
+  margin: 0 0 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.video-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.video-stats span {
+  padding: 4px 8px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .video-player-header {
+    padding: 15px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .video-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .controls-bottom {
+    gap: 10px;
+  }
+
+  .time-controls {
+    gap: 8px;
+  }
+
+  .volume-controls {
+    display: none; /* Hide volume controls on mobile */
+  }
+
+  .video-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .video-player-container {
+    background: #2a2a2a;
+    color: white;
+  }
+
+  .video-player-header {
+    border-bottom-color: #444;
+  }
+
+  .video-player-header h3 {
+    color: white;
+  }
+
+  .action-button {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #ddd;
+  }
+
+  .action-button:hover {
+    background: #444;
+    border-color: #666;
+  }
+
+  .video-info {
+    background: #333;
+  }
+
+  .video-description {
+    color: #bbb;
+  }
+
+  .video-stats span {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #ddd;
+  }
+}

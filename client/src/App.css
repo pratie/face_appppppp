@@ -1,0 +1,91 @@
+/* Additional styles specific to the App component */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.step-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.step-container h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.step-container p {
+  margin-bottom: 1.5rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Progress bar styles */
+.progress-container {
+  margin: 2rem 0;
+}
+
+.progress-stage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.progress-stage.pending {
+  background: #f8f9fa;
+  color: #6c757d;
+}
+
+.progress-stage.processing {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.progress-stage.completed {
+  background: #28a745;
+  color: white;
+}
+
+.progress-stage.error {
+  background: #dc3545;
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .step-container {
+    max-width: 100%;
+  }
+  
+  .step-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .progress-stage {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
